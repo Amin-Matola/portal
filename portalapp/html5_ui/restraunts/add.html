@@ -3,19 +3,19 @@
 {% block heading %} Add New Restrant {% endblock %}
 
 {% block table %}
-<form class="form p-3" method="post">
-    {% csrf_token %}
-    {% if success %}
-        <h3 class="alert alert-success">Restraunt added successfully!</h3>
-    {% elif fail %}
-        <h3 class="alert alert-danger">Restraunt not added!</h3>
-    {% endif %}
-    <div class="form-group">
-        <label for="name">Restraunt Name</label>
-        <input class="form-control" name="name" placeholder="5 Star restraunt" required="required"/>
-    </div>
-    <div class="form-group d-flex">
-        <button class="btn btn-primary ml-auto">Add Restraunt</button>
-    </div>
-</form>
+    <form class="form p-3" method="post">
+        {% csrf_token %}
+        {% if success %}
+            <h3 class="alert alert-success">Restraunt added successfully!</h3>
+        {% elif fail %}
+            <h3 class="alert alert-danger">Restraunt not added!</h3>
+        {% endif %}
+        <div class="form-group">
+            <label for="name">Restraunt Name</label>
+            <input class="form-control" name="name" placeholder="5 Star restraunt" required="required"/>
+        </div>
+        <div class="form-group d-flex">
+            <button class="btn btn-primary ml-auto">Add Restraunt</button>
+        </div>
+    </form>
 {% endblock %}
