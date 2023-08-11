@@ -34,9 +34,7 @@ def add( request ):
     
     context     = {}
 
-    if request.method == "GET":
-        html_template = loader.get_template('restraunts/index.html')
-    else:
+    if request.method == "POST":
         restraunt = request.POST.get("name", "")
         if len(restraunt):
             try:
@@ -47,7 +45,8 @@ def add( request ):
                 context.update({"fail": True})
         else:
             context.update({"fail": True})
-    context     = CORE_VIEWS.context_maker(request, context)
+       
+    context       = CORE_VIEWS.context_maker(request, context)
     html_template = loader.get_template('restraunts/add.html')
 
     # Return the response once
