@@ -1,0 +1,83 @@
+{% extends 'core/layouts/base.html' %}
+
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+
+{% block content %}
+<!-- Header -->
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+      <div class="header-body">
+        <div class="row align-items-center py-4">
+          <div class="col-lg-6 col-7">
+            <!-- <h6 class="h2 text-white d-inline-block mb-0"></h6> -->
+            <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
+              <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                <li class="breadcrumb-item"><a href="#">Dashboards</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Restraunts</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="col-lg-6 col-5 text-right">
+            <a href="{% url 'add' %}" class="btn btn btn-neutral"><i class="ni ni-fat-add"></i> Add</a>
+            <!-- <a href="#" class="btn btn btn-neutral">Filters</a> -->
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Page content -->
+    <div class="container-fluid mt--6">
+        <div class="row">
+        <div class="col">
+            <div class="card">
+            <!-- Card header -->
+            <div class="card-header border-0">
+                <h3 class="mb-0">{% block heading %} Available Restraunts {% endblock %}</h3>
+            </div>
+            {% block table %}
+            <!-- Light table -->
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col" class="sort" data-sort="name">ID</th>
+                        <th colspan="2" scope="col" class="sort" data-sort="budget">Restrant Name</th>
+                        <th scope="col" class="d-flex align-items-center justify-content-end" data-sort="status">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="list">
+                    {% if restraunts %}
+                    {% for restraunt in restraunts %}
+                    <tr>
+                    <td class="budget">
+                        {{restraunt.id}}
+                    </td>
+                    <td colspan="2">
+                        <span>{{restraunt.name}}</span>
+                    </td>
+                    <td>
+                        <div class="d-flex align-items-center justify-content-end">
+                            <a href="{% url 'delete' restraunt=restraunt.id %}" class="text-danger">
+                                <i class="ni ni-fat-remove"></i>
+                            </a>
+                        </div>
+                    </td>
+                    </tr>
+                    {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+          </div>
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}
+        
